@@ -12,7 +12,12 @@ export class POMlogIn {
     // Action
     async Login(username: string, password: string) {
         await this.userNameInput.fill(username);
+        await this.page.waitForTimeout(500);
+
         await this.passWordInput.fill(password);
+        await this.page.waitForTimeout(500);
+
         await this.logInButton.click();
+        await this.page.waitForTimeout(1000);
     }
 }

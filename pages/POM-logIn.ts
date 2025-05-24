@@ -18,6 +18,6 @@ export class POMlogIn {
         await this.page.waitForTimeout(500);
 
         await this.logInButton.click();
-        await this.page.waitForTimeout(1000);
+        await this.page.waitForTimeout(500);
     }
 }

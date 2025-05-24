@@ -30,33 +30,20 @@ This project implements a comprehensive testing framework for Saucedemo.com usin
 
 
 ## 📁 Project Structure
-saucedemo-playwright/
-
-├── tests/
-
-│   ├── login.spec.ts
-
-│   ├── sort.spec.ts
-
-│   ├── addToCart.spec.ts
-
-│   ├── cartNavigation.spec.ts
-
-│   ├── checkout.spec.ts
-
-│   └── browserLaunch.spec.ts
-
-├── pages/
-
-│   ├── POM-logIn.ts
-
-│   ├── POM-addToCart.ts
-
-│   └── POM-checkOut.ts
-
-├── .env
-
-└── README.md
+- saucedemo-playwright/
+- ├── tests/
+- │   ├── login.spec.ts
+- │   ├── sort.spec.ts
+- │   ├── addToCart.spec.ts
+- │   ├── cartNavigation.spec.ts
+- │   ├── checkout.spec.ts
+- │   └── browserLaunch.spec.ts
+- ├── pages/
+- │   ├── POM-logIn.ts
+- │   ├── POM-addToCart.ts
+- │   └── POM-checkOut.ts
+- ├── .env
+- └── README.md
 
 
 ## 🔧 Key Technologies Used

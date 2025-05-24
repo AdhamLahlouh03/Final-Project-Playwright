@@ -36,6 +36,10 @@ test('Add products to cart', async ({ page }) => {
         await cart.addProductByName(name);
         await page.waitForTimeout(500);
     }
+
+    // 7. go to cart
+    await cart.goToCart();
+    await page.waitForTimeout(100);
 });
 
 // Skip Annotations : appears on the report skiped, The time taken is "0ms" 

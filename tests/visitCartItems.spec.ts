@@ -40,13 +40,29 @@ test('Visit each product from cart', async ({ page }) => {
     await cart.goToCart();
     await page.waitForTimeout(100);
 
-    // 8. go to each product
-    const productIds = ["0", "1", "4", "5"]; // IDs
-    for (const id of productIds) {
+    // 8. visit each product and check name
+    const productIds = ["4", "0", "1", "5"]; // Product ID values
+    const expectedNames = [
+        "Sauce Labs Backpack",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Fleece Jacket"
+    ];
+
+    for (let i = 0; i < productIds.length; i++) {
+        const id = productIds[i];
+        const expectedName = expectedNames[i];
+
         await cart.openCartItemById(id);
-        await page.waitForTimeout(100);
-        await cart.backToProducts();
-        await page.waitForTimeout(100);
+        await page.waitForTimeout(1000);
+
+        // Check the product name on the page matches the expected name
+        const productTitle = await page.locator('.inventory_details_name').textContent();
+        await expect(productTitle?.trim()).toBe(expectedName);
+
+        // back to cart
+        await page.locator('[data-test="shopping-cart-link"]').click();
+        await page.waitForTimeout(1000);
     }
 });
 
@@ -59,32 +75,53 @@ test.fixme('Fixme.1 annotations', async ({ page }) => {
     await page.goto("https://www.saucedemo.com/");
     await page.waitForTimeout(100);
 
-    // 2. Check LogIn
+    // 2. Check Title Website
+    await expect(page).toHaveTitle("Swag Labs");
+    await page.waitForTimeout(100);
+
+    // 3. Check LogIn
     await loginObj.Login('standard_user', 'secret_sauce');
     await page.waitForTimeout(100);
 
-    // 3. built list for products name
+    // 4. Check the title(url) after moving from the LogIn page
+    await expect(page.url()).toContain("inventory.html");
+    await page.waitForTimeout(100);
+
+    // 5. built list for products name
     const productNames = [
-        "sauce-labs-backpack",
+        "sauce-labs-backpack"
     ];
 
-    // 4. add product to cart
+    // 6. add product to cart
     for (const name of productNames) {
         await cart.addProductByName(name);
         await page.waitForTimeout(100);
     }
 
-    // 5. go to cart
+    // 7. go to cart
     await cart.goToCart();
     await page.waitForTimeout(100);
 
-    // 6. go to each product
-    const productIds = ["4"]; // IDs
-    for (const id of productIds) {
+    // 8. visit each product and check name
+    const productIds = ["4"]; // Product ID values
+    const expectedNames = [
+        "Sauce Labs Backpack"
+    ];
+
+    for (let i = 0; i < productIds.length; i++) {
+        const id = productIds[i];
+        const expectedName = expectedNames[i];
+
         await cart.openCartItemById(id);
-        await page.waitForTimeout(100);
-        await cart.backToProducts();
-        await page.waitForTimeout(100);
+        await page.waitForTimeout(1000);
+
+        // Check the product name on the page matches the expected name
+        const productTitle = await page.locator('.inventory_details_name').textContent();
+        await expect(productTitle?.trim()).toBe(expectedName);
+
+        // back to cart
+        await page.locator('[data-test="shopping-cart-link"]').click();
+        await page.waitForTimeout(1000);
     }
 });
 
@@ -97,32 +134,54 @@ test('Fixme.2 annotations', async ({ page }) => {
     await page.goto("https://www.saucedemo.com/");
     await page.waitForTimeout(100);
 
-    // 2. Check LogIn
+    // 2. Check Title Website
+    await expect(page).toHaveTitle("Swag Labs");
+    await page.waitForTimeout(100);
+
+    // 3. Check LogIn
     await loginObj.Login('standard_user', 'secret_sauce');
     await page.waitForTimeout(100);
 
-    // 3. built list for products name
+    // 4. Check the title(url) after moving from the LogIn page
+    await expect(page.url()).toContain("inventory.html");
+    await page.waitForTimeout(100);
+
+    // 5. built list for products name
     const productNames = [
-        "sauce-labs-backpack",
+        "sauce-labs-backpack"
     ];
 
-    // 4. add product to cart
+    // 6. add product to cart
     for (const name of productNames) {
         await cart.addProductByName(name);
         await page.waitForTimeout(100);
     }
 
-    // 5. go to cart
+    // 7. go to cart
     await cart.goToCart();
     await page.waitForTimeout(100);
 
-    // 6. go to each product
-    const productIds = ["4"]; // IDs
-    for (const id of productIds) {
+    // 8. visit each product and check name
+    const productIds = ["4"]; // Product ID values
+    const expectedNames = [
+        "Sauce Labs Backpack"
+    ];
+    
+    test.fixme()
+
+    for (let i = 0; i < productIds.length; i++) {
+        const id = productIds[i];
+        const expectedName = expectedNames[i];
+
         await cart.openCartItemById(id);
-        await page.waitForTimeout(100);
-        await cart.backToProducts();
-        await page.waitForTimeout(100);
-        test.fixme();
+        await page.waitForTimeout(1000);
+
+        // Check the product name on the page matches the expected name
+        const productTitle = await page.locator('.inventory_details_name').textContent();
+        await expect(productTitle?.trim()).toBe(expectedName);
+
+        // back to cart
+        await page.locator('[data-test="shopping-cart-link"]').click();
+        await page.waitForTimeout(1000);
     }
 });

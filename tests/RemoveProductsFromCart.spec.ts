@@ -24,7 +24,7 @@ test('Remove products from cart', async ({ page }) => {
     await expect(page.url()).toContain("inventory.html");
     await page.waitForTimeout(1000);
 
-    // 5. built list for products name
+    // 5. List of product
     const productNames = [
         "sauce-labs-backpack",
         "sauce-labs-bike-light",
@@ -54,4 +54,21 @@ test('Remove products from cart', async ({ page }) => {
         await remove.removeProductByName(name);
         await page.waitForTimeout(500);
     }
+
+    // 10. Assert that removed products no longer exist in cart
+    const remainingItems = await page.locator('.inventory_item_name').allTextContents();
+    await page.waitForTimeout(500);
+
+    // 11. create new list -> map of readable product names
+    const productNameMap: { [key: string]: string } = {
+        "sauce-labs-backpack": "Sauce Labs Backpack",
+        "sauce-labs-bike-light": "Sauce Labs Bike Light"
+    };
+
+    // 12. check from remove
+    for (const removed of productsToRemove) {
+        await expect(remainingItems).not.toContain(productNameMap[removed]);
+    }
+
+    await page.waitForTimeout(1000);
 });
